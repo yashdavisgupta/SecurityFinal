@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript" src="ajax.js"></script>
+		<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+	</head>
+
+	<body onload=currentServer()>
+		<div id="currentServer">
+			<b>Current Server</b>
+			<p>Server Name: </p>
+			<p>Server IP: </p>
+		</div>
+
+		<input type="button" onclick="get();" value="Show Servers">
+
+		<div id="servers">
+		</div>
+
+	</body>
+</html>
