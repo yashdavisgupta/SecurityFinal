@@ -5,7 +5,7 @@
 
 	
 	$input = $_GET['request'];
-	$inputIP = $_GET['ip'];
+	$secondInput = $_GET['second'];
 
 	switch($input)
 	{
@@ -47,7 +47,7 @@
 		case 'ping':
 			$info = array();
 
-			$output = shell_exec("ping -c 4 $inputIP");
+			$output = shell_exec("ping -c 4 $secondInput");
 			$findme = '---';
 			$pos = strpos($output, $findme);
 			$out = substr($output, $pos);
@@ -93,6 +93,24 @@
 			array_push($info, $temp);
 
 			echo json_encode($info);
+		break;
+
+		case 'setCS':
+			$response = array();
+
+			$mysqli = new mysqli("127.0.0.1", "root", "root", "SecurityApp");
+			//$result = $mysqli->query("update currentServer set fkey='$secondInput'");
+			if($mysqli->query("update currentServer set fkey='$secondInput'"))
+			{
+				$temp = array('worked' => 'true');
+				array_push($response, $temp);
+			} else {
+				$temp = array('worked' => 'false');
+				array_push($response, $temp);
+			}
+
+			$mysqli->close();
+			echo json_encode($response);
 		break;
 
 		default:
