@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="css/modal.css">
 		<script type="text/javascript" src="ajax.js"></script>
 		<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+		<style>
+			
+		</style>
 	</head>
 
 	<body onload=load()>
@@ -12,11 +16,65 @@
 			<p>Server IP: </p>
 		</div>
 
+		<!-- <input type="button" class="js-open-modal" href="#" data-modal-id="popup" value="Add Server"> -->
+		<a class="js-open-modal" href="#" data-modal-id="popup">Click Me</a>		
+
 		<hr>
 		<br>
 
 		<div id="servers">
 		</div>
+
+		<div id="popup" class="modal-box">  
+  			<header>
+   			 	<a href="#" class="js-modal-close close">x</a>
+    				<h3>New Server</h3>
+  			</header>
+
+ 			 <div class="modal-body">
+    				<p>Server Name:</p>
+				<input id="newName" type="text">
+
+				<p>Server IP:</p>
+				<input id="newIP" type="text">
+ 			 </div>
+
+  			<footer>
+   				<a href="#" onclick="addServer(document.getElementById('newName').value, document.getElementById('newIP').value)" class="js-modal-close">Add Server</a>
+  			</footer>
+		</div>
+
+		<script>
+			$(function(){
+
+				var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
+
+  				$('a[data-modal-id]').click(function(e) {
+    					e.preventDefault();
+    					$("body").append(appendthis);
+    					$(".modal-overlay").fadeTo(500, 0.7);
+    					//$(".js-modalbox").fadeIn(500);
+    					var modalBox = $(this).attr('data-modal-id');
+    					$('#'+modalBox).fadeIn($(this).data());
+  				});  
+  		
+  
+				$(".js-modal-close, .modal-overlay").click(function() {
+  					$(".modal-box, .modal-overlay").fadeOut(500, function() {
+   						 $(".modal-overlay").remove();
+  					});
+				});
+ 
+				$(window).resize(function() {
+  					$(".modal-box").css({
+    						top: ($(window).height() - $(".modal-box").outerHeight()) / 2, left: ($(window).width() - $(".modal-box").outerWidth()) / 2
+  					});
+				});
+ 
+				$(window).resize();
+ 
+			});
+		</script>
 
 	</body>
 </html>

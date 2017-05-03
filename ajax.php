@@ -6,6 +6,7 @@
 	
 	$input = $_GET['request'];
 	$secondInput = $_GET['second'];
+	$thirdInput = $_GET['third'];
 
 	switch($input)
 	{
@@ -42,6 +43,23 @@
 
 			$mysqli->close();
 			echo json_encode($servers); 
+		break;
+
+		case 'addServer':
+			$response = array(); 
+
+			$mysqli = new mysqli("127.0.0.1", "root", "root", "SecurityApp");
+			if($mysqli->query("insert into servers(name, ip) values ('$secondInput', '$thirdInput')"))
+			{
+				$temp = array('worked' => 'true');
+				array_push($response, $temp);
+			} else {
+				$temp = array('worked' => $mysqli->error);
+				array_push($response, $temp);
+			}
+
+			$mysqli->close();
+			echo json_encode($response);
 		break;
 
 		case 'ping':

@@ -24,6 +24,26 @@ function currentServer()
 	});
 }
 
+function addServer(name, ip)
+{
+	console.log("Adding Server...");
+	console.log("Name: " + name);
+	console.log("IP: " + ip);
+	$.ajax({
+   	 	type: "GET",
+    		url: "ajax.php?request=addServer&second=" + name + "&third=" + ip,
+    		contentType: "application/json; charset=utf-8",
+    		dataType: "json",
+    		success: function(data){ 
+			console.log("Worked - " + data[0].worked);
+			showServers();
+		},
+    		failure: function(errMsg) {
+        		alert(errMsg);
+    		}
+	});
+}
+
 function showServers() 
 {
 	$.ajax({
