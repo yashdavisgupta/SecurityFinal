@@ -5,6 +5,7 @@
 
 	
 	$input = $_GET['request'];
+	$inputIP = $_GET['ip'];
 
 	switch($input)
 	{
@@ -46,7 +47,7 @@
 		case 'ping':
 			$info = array();
 
-			$output = shell_exec("ping -c 4 127.0.0.1");
+			$output = shell_exec("ping -c 4 $inputIP");
 			$findme = '---';
 			$pos = strpos($output, $findme);
 			$out = substr($output, $pos);
