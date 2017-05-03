@@ -2,7 +2,8 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="css/modal.css">
-		<script type="text/javascript" src="ajax.js"></script>
+		<script type="text/javascript" src="js/ajax.js"></script>
+		<script type="text/javascript" src="js/ajax.js"></script>
 		<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
 		<style>
 			
@@ -16,8 +17,7 @@
 			<p>Server IP: </p>
 		</div>
 
-		<!-- <input type="button" class="js-open-modal" href="#" data-modal-id="popup" value="Add Server"> -->
-		<a class="js-open-modal" href="#" data-modal-id="popup">Click Me</a>		
+		<a class="js-open-modal" href="#" data-modal-id="popup">Add Server</a>		
 
 		<hr>
 		<br>
@@ -45,35 +45,7 @@
 		</div>
 
 		<script>
-			$(function(){
-
-				var appendthis =  ("<div class='modal-overlay js-modal-close'></div>");
-
-  				$('a[data-modal-id]').click(function(e) {
-    					e.preventDefault();
-    					$("body").append(appendthis);
-    					$(".modal-overlay").fadeTo(500, 0.7);
-    					//$(".js-modalbox").fadeIn(500);
-    					var modalBox = $(this).attr('data-modal-id');
-    					$('#'+modalBox).fadeIn($(this).data());
-  				});  
-  		
-  
-				$(".js-modal-close, .modal-overlay").click(function() {
-  					$(".modal-box, .modal-overlay").fadeOut(500, function() {
-   						 $(".modal-overlay").remove();
-  					});
-				});
- 
-				$(window).resize(function() {
-  					$(".modal-box").css({
-    						top: ($(window).height() - $(".modal-box").outerHeight()) / 2, left: ($(window).width() - $(".modal-box").outerWidth()) / 2
-  					});
-				});
- 
-				$(window).resize();
- 
-			});
+			modal();
 		</script>
 
 	</body>
