@@ -1,52 +1,60 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" href="css/modal.css">
-		<script type="text/javascript" src="js/ajax.js"></script>
-		<script type="text/javascript" src="js/ajax.js"></script>
-		<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
-		<style>
-			
-		</style>
+		<!--<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>-->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 	</head>
-
 	<body onload=load()>
+<nav>
+	<div class="nav-wrapper">
+		<a href="#" class="brand-logo center">Security Final</a>
+		<ul id="nav-mobile" class="left hide-on-med-and-down">
+			<li><a href="about.html">About</a></li>
+		</ul>
+	</div>
+</nav>
+		<div class="container">
+		<div class="card">
+	<div class="card-content">
 		<div id="currentServer">
 			<b>Current Server</b>
 			<p>Server Name: </p>
 			<p>Server IP: </p>
 		</div>
 
-		<a class="js-open-modal" href="#" data-modal-id="popup">Add Server</a>		
-
-		<hr>
-		<br>
-
+		<!-- <input type="button" class="js-open-modal" href="#" data-modal-id="popup" value="Add Server"> -->
+		<a class="waves-effect waves-light btn" href="#modal1">New Server</a>
+</div>
+</div>
+<div class="card">
+<div class="card-content">
 		<div id="servers">
+			<div>
+			<b>Ping</b>
+			<p>0ms</p>
+			<p>127.0.0.1</p>
+			<input type="button" value="Ping" class="btn waves-effect waves-light disabled">
+			<input type="button" value="Select Server" class="btn waves-effect waves-light disabled" onclick="setCurrentServer('+ response[i].pkey +')">
+			<div id="' + response[i].pkey + 'info"></div>
+			</div>
 		</div>
-
-		<div id="popup" class="modal-box">  
-  			<header>
-   			 	<a href="#" class="js-modal-close close">x</a>
-    				<h3>New Server</h3>
-  			</header>
-
- 			 <div class="modal-body">
-    				<p>Server Name:</p>
-				<input id="newName" type="text">
-
-				<p>Server IP:</p>
-				<input id="newIP" type="text">
- 			 </div>
-
-  			<footer>
-   				<a href="#" onclick="addServer(document.getElementById('newName').value, document.getElementById('newIP').value)" class="js-modal-close">Add Server</a>
-  			</footer>
+</div>
+</div>
+		<div id="modal1" class="modal">
+				<div class="modal-content">
+					<h3>New Server</h3>
+					<p>Server Name:</p>
+					<input id="newName" type="text">
+					<p>Server IP:</p>
+					<input id="newIP" type="text">
+				</div>
+			<div class="modal-footer">
+				<a href="#" onclick="addServer(document.getElementById('newName').value, document.getElementById('newIP').value)" class="js-modal-close">Add Server</a>
+				<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+			</div>
 		</div>
-
-		<script>
-			modal();
-		</script>
-
+	</div>
 	</body>
 </html>
